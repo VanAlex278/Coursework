@@ -2,8 +2,8 @@ import logging
 import pandas as pd
 from src.utils import setup_logging, load_transactions
 from src.views import main_page
-#from src.services import investment_bank
-#from src.reports import spending_by_category
+from src.services import investment_bank
+from src.reports import spending_by_category
 
 
 def main():

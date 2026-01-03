@@ -51,7 +51,8 @@ def get_stock_prices(stocks: List[str]) -> List[Dict[str, float]]:
     logger = logging.getLogger(__name__)
     prices = []
     load_dotenv()
-    apikey = os.getenv('Alpha_Vantage_API')
+    # apikey = os.getenv('Alpha_Vantage_API')
+    apikey = 'M51PXPJUKI1GU5RP'
     print(apikey)
     try:
         for stock in stocks:
