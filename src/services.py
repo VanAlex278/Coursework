@@ -46,7 +46,3 @@ def investment_bank(month: str, transactions: List[Dict[str, Any]], limit: int) 
     except Exception as e:
         logger.error(f"Ошибка расчета инвесткопилки: {e}")
         raise
-
-if __name__ == "__main__":
-    inv_kop = investment_bank("2020-11", load_transactions(), 50)
-    print(inv_kop)

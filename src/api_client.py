@@ -50,10 +50,10 @@ def get_stock_prices(stocks: List[str]) -> List[Dict[str, float]]:
     """
     logger = logging.getLogger(__name__)
     prices = []
-    load_dotenv()
+    # load_dotenv()
     # apikey = os.getenv('Alpha_Vantage_API')
     apikey = 'M51PXPJUKI1GU5RP'
-    print(apikey)
+    # print(apikey)
     try:
         for stock in stocks:
             url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock}&apikey={apikey}'

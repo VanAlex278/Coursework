@@ -11,7 +11,8 @@ def setup_logging() -> None:
     logging.basicConfig(
         level=logging.INFO,
         filename="../data/app.log",
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        encoding='utf-8'
     )
 
 
