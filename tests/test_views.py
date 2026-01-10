@@ -1,7 +1,8 @@
-"""Тесты для views.py"""
+import json
+
 import pytest
 import pandas as pd
-from src.views import main_page
+from src.views import main_page, json_answer
 
 
 def test_main_page_structure():
@@ -42,3 +43,9 @@ def test_main_page_with_data():
 
     assert result["greeting"] == "Добрый день"
     assert len(result["cards"]) >= 0
+
+
+
+def test_json_answer():
+    data = json.loads(json_answer({"test1": "answer1", "test2": "answer2"}))
+    assert data == {"test1": "answer1", "test2": "answer2"}

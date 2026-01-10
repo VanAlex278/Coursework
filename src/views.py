@@ -1,23 +1,24 @@
+import json
 import logging
 from datetime import datetime
 from typing import Any, Dict
-from src.utils import json_file_reader
+
 import pandas as pd
 
 from src.api_client import get_currency_rates, get_stock_prices
-from src.utils import load_transactions, get_greeting
+from src.utils import get_greeting, json_file_reader, load_transactions
 
 
 def main_page(transactions: pd.DataFrame, date_time: str) -> Dict[str, Any]:
     """
-    Генерирует JSON для главной страницы.
+    Генерирует ответ для главной страницы.
 
     Args:
         transactions: DataFrame с транзакциями
         date_time: Дата и время в формате 'YYYY-MM-DD HH:MM:SS'
 
     Returns:
-        JSON данные для главной страницы
+        Словарь с данными для главной страницы
     """
     logger = logging.getLogger(__name__)
     logger.info(f"Генерация главной страницы для {date_time}")
@@ -71,20 +72,27 @@ def main_page(transactions: pd.DataFrame, date_time: str) -> Dict[str, Any]:
 
         # API данные
         json_data = json_file_reader()
-        currency_rates = get_currency_rates(json_data['user_currencies'])
-        stock_prices = get_stock_prices(json_data['user_stocks'])
+        currency_rates = get_currency_rates(json_data["user_currencies"])
+        stock_prices = get_stock_prices(json_data["user_stocks"])
 
         page_main = {
             "greeting": greeting,
             "cards": cards_data,
             "top_transactions": top_transactions_list,
             "currency_rates": currency_rates,
-            "stock_prices": stock_prices
+            "stock_prices": stock_prices,
         }
         return page_main
     except Exception as e:
         logger.error(f"Ошибка генерации главной страницы: {e}")
         raise
+
+
+def json_answer(answer_list: Dict[str, Any]) -> str:
+    """Формирует JSON данные для главной страницы"""
+    json_list = json.dumps(answer_list)
+    return json_list
+
 
 if __name__ == "__main__":
     df = load_transactions()

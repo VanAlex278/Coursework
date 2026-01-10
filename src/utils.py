@@ -12,7 +12,7 @@ def setup_logging() -> None:
         level=logging.INFO,
         filename="../data/app.log",
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        encoding='utf-8'
+        encoding="utf-8",
     )
 
 
@@ -60,16 +60,17 @@ def json_file_reader(path_to_file: str = "../data/user_settings.json") -> dict[s
     try:
         with open(path_to_file, encoding="utf-8") as f:
             list_json = json.load(f)
-            logging.info(f'Файл загружен: {path_to_file}')
+            logging.info(f"Файл загружен: {path_to_file}")
             return list_json
     except (FileNotFoundError, JSONDecodeError) as e:
         logging.error(f"Файл отсутствует или поврежден! {e}")
-        return {'user_currencies': ['USD', 'EUR'], 'user_stocks': ['AAPL', 'AMZN', 'GOOGL', 'MSFT', 'TSLA']}
+        return {"user_currencies": ["USD", "EUR"], "user_stocks": ["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"]}
+
 
 if __name__ == "__main__":
     # print(get_greeting("2024-11-01 14:20:00"))
     # df = load_transactions()
     # print(df.shape)
     json_data = json_file_reader()
-    print(json_data['user_currencies'])
-    print(json_data['user_stocks'])
+    print(json_data["user_currencies"])
+    print(json_data["user_stocks"])

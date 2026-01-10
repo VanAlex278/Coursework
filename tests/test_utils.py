@@ -23,9 +23,19 @@ def test_get_greeting_day():
     assert get_greeting("2020-01-01 14:00:00") == "Добрый день"
 
 
+def test_get_greeting_night():
+    """Тест приветствия для дня."""
+    assert get_greeting("2020-01-01 01:15:43") == "Доброй ночи"
+
+
+def test_get_greeting_evening():
+    """Тест приветствия для дня."""
+    assert get_greeting("2020-01-01 22:52:59") == "Добрый вечер"
+
+
 @patch("json.load")
 def test_json_file_reader(mock_load):
-    with patch("builtins.open", mock_open()) as mocked_open:
+    with patch("builtins.open", mock_open()):
         mock_load.return_value = [{'test_1': 'test_data'}]
         result = json_file_reader("dummy data")
         expected = [{'test_1': 'test_data'}]

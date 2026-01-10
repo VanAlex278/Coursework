@@ -1,6 +1,5 @@
 import logging
 from typing import Any, Dict, List
-from src.utils import load_transactions
 
 
 def investment_bank(month: str, transactions: List[Dict[str, Any]], limit: int) -> float:
